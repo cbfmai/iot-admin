@@ -1,0 +1,75 @@
+/**
+ * fileName: leftNav.css
+ * author: li.delin
+ * createDate: 2017.08.5
+ */
+
+
+.leftNav:before{
+  content: "";
+  display: block;
+  width:70px;
+  position: fixed;
+  bottom: 0;
+  top:10px;
+  z-index: -1;
+  background-color: #3d3d3d;/*#202020*/
+}
+.leftNav{
+  float:left;
+  width:70px;
+  font-size:14px;
+  text-align:center;
+}
+.leftNav li{
+  height:70px;
+  border-bottom:1px solid #333;
+  border-top:1px solid #4b4b4b;
+  position:relative;
+}
+.leftNav li.last{
+  border-bottom:none;
+}
+.leftNav li.first{
+  border-top:none;
+}
+.leftNav li a{
+  color:#969696;
+  display:block;
+  height:70px;
+  /*border-left: 2px solid transparent;*/
+}
+.leftNav li a em{
+  display:block;
+  width:48px;
+  height:38px;
+  margin:0 auto;
+  position:relative;
+  top:12px;
+  font-size:24px;
+}
+.leftNav li.first a em{
+  font-size:28px;
+}
+.leftNav li a span{
+  display:inline-block;
+  margin-top:4px;
+}
+
+.leftNav li a:hover,.leftNav li a.cur{
+  text-decoration:none;
+  background-color:#e02222;
+  /*border-left:2px solid #ff9c00;*/
+  color:#fff;
+}
+.leftNav li a.cur .innerArrow {
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #f9f9f9;
+  border-top: 10px solid transparent;
+  height: 0;
+  right:-1px;
+  left:auto;
+  position: absolute;
+  top: 25px;
+  width: 0;
+}

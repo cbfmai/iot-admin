@@ -1,0 +1,63 @@
+.header {
+  margin: 0;
+  height: 50px;
+  border-radius: 0 3px 0 0;
+  background-color: #212121;
+  position: relative;
+}
+
+.header .logo {
+  width: 300px;
+  height: 30px;
+  background: url(./logo.png) no-repeat left top;
+  text-indent: -9999px;
+  left: 12px;
+  position: relative;
+  top: 10px;
+  float: left;
+}
+
+.fullIcon,.expandIcon{
+  background:url(./screenControl.png) no-repeat left top;
+  float: right;
+  height: 24px;
+  margin-right: 12px;
+  margin-top: 12px;
+  width: 24px;
+}
+.expandIcon{
+  background-position:left -25px;
+}
+.selBox {
+  color: #fff;
+  padding:5px 30px 5px 15px;
+  background:#363f55;
+  position:absolute;
+  height: 26px;
+  line-height:26px;
+  border-radius: 3px;
+  cursor: pointer;
+  top:7px;
+  font-size: 14px;
+}
+.selBox .selBtn {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #fff;
+  right: 10px;
+  top: 18px;
+}
+.selBox .selList {
+  position: absolute;
+  z-index: 999;
+  background: #363f55;
+  left: 0;
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.5);
+  top:34px;
+  display:none;
+}
