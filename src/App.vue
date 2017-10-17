@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <iot-header></iot-header>
+    <iot-header v-if="isLogin"></iot-header>
+
+    <iot-login class="content" v-if="!isLogin" v-on:login="loginSuccess"></iot-login>
     <!--外层框架-->
-    <div class="outerWrap">
-      <iot-aside></iot-aside>
-
-      <!--内容面板-->
-      <div class="mainContent">
-        <router-view></router-view>
+    <div v-else>
+      <div class="outerWrap">
+        <iot-aside></iot-aside>
+        <!--内容面板-->
+        <div class="mainContent">
+          <router-view></router-view>
+        </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -18,13 +20,46 @@
 
   import header from './components/header/header.vue';
   import aside from './components/aside/aside.vue';
+  import login from './views/login.vue'
+
 
   export default {
     name: 'app',
     components: {
       "iot-header": header,
-      "iot-aside": aside
+      "iot-aside": aside,
+      "iot-login": login
+    },
+
+    data() {
+      return {
+        token: ''
+      }
+    },
+
+    mounted() {
+      let token = window.sessionStorage.getItem("token");
+      if (token) {
+        this.token = JSON.parse(token)
+      } else {
+        this.$router.push("/login")
+      }
+    },
+
+    computed: {
+      isLogin() {
+        return this.$route.path.split('/')[1] != 'login'
+      }
+    },
+
+    methods :{
+      loginSuccess(data) {
+        window.sessionStorage.setItem("token", JSON.stringify(data))
+        this.token = data;
+        this.$router.push("/map")
+      },
     }
+
   }
 </script>
 
@@ -53,24 +88,28 @@
   }
 
   /*右侧主内容*/
-  .mainContent{
+  .mainContent {
     /*border-right: 1px solid #fefefe;*/
     margin: 0 0 10px 70px;
-    background-color:#fafafa;
-    border-radius:0 0 0 3px;
+    background-color: #fafafa;
+    border-radius: 0 0 0 3px;
   }
-  .mainContent .mapWrap{
-    position:relative;
+
+  .mainContent .mapWrap {
+    position: relative;
   }
-  .mainContent .mapArea{
-    border-radius:0 0 0 3px;
+
+  .mainContent .mapArea {
+    border-radius: 0 0 0 3px;
   }
-  .mainContent .titleBar{
-    overflow:hidden;
-    margin-bottom:15px;
+
+  .mainContent .titleBar {
+    overflow: hidden;
+    margin-bottom: 15px;
   }
+
   .mainContent .leftPanel::before {
-    bottom:15px;
+    bottom: 15px;
     content: "";
     display: block;
     position: fixed;
@@ -80,8 +119,9 @@
     /*box-shadow:1px 0 2px rgba(0, 0, 0, 0.1);*/
     border-right: 1px solid #d4d4d4;
   }
-  .mainContent .leftPanel{
-    float:left;
-    width:400px;
+
+  .mainContent .leftPanel {
+    float: left;
+    width: 400px;
   }
 </style>
