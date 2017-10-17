@@ -2,6 +2,10 @@
 
 > IOT Admin Project
 
+## Precondition
+
+* NodeJS (https://nodejs.org/en/)
+
 ## Build Setup
 
 ``` bash
