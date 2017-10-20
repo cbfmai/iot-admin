@@ -95,3 +95,16 @@ export function listDeviceAssignmentHistory (axios, hardwareId, includeAsset,
   }
   return restAuthGet(axios, 'devices/' + hardwareId + '/assignments' + query)
 }
+
+
+
+/**
+ * Get device by specification token.
+ */
+export function getDevicesBySpecification (axios, token, paging) {
+  let query = ''
+  if (paging) {
+    query += '?' + paging
+  }
+  return restAuthGet(axios, '/devices/specification/' + token + query)
+}

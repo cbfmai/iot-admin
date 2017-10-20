@@ -46,10 +46,11 @@
         var password = this.model.password;
         var token = btoa(username + ':' + password);
         this.$store.commit('authToken', token);
+        this.$store.commit('authTenants', 'sitewhere1234567890');
+        console.log(this.$store)
         _getUser(this.$store, username)
           .then(function (response) {
             component.loading = false;
-            console.log(JSON.stringify(response));
             component.$store.commit('user', response.data);
             component.$router.push('/map')
           }).catch(function (e) {
@@ -61,7 +62,7 @@
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
   .login-container {
     /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
     -webkit-border-radius: 5px;
@@ -74,13 +75,13 @@
     background: #fff;
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #cac6c6;
-    .title {
-      margin: 0px auto 40px auto;
-      text-align: center;
-      color: #505458;
-    }
-    .remember {
-      margin: 0px 0px 35px 0px;
-    }
+  }
+  .title {
+    margin: 0px auto 40px auto;
+    text-align: center;
+    color: #505458;
+  }
+  .remember {
+    margin: 0px 0px 35px 0px;
   }
 </style>

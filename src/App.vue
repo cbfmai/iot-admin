@@ -2,7 +2,7 @@
   <div id="app">
     <iot-header v-if="isLogin"></iot-header>
 
-    <iot-login class="content" v-if="!isLogin" v-on:login="loginSuccess"></iot-login>
+    <iot-login class="content" v-if="!isLogin" v-on:user="loginSuccess"></iot-login>
     <!--外层框架-->
     <div v-else>
       <div class="outerWrap">
@@ -54,7 +54,7 @@
 
     methods :{
       loginSuccess(data) {
-        window.sessionStorage.setItem("token", JSON.stringify(data))
+        window.sessionStorage.setItem("user", JSON.stringify(data))
         this.token = data;
         this.$router.push("/map")
       },

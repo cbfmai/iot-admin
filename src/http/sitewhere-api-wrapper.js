@@ -77,7 +77,8 @@ import {
   getDevice,
   updateDevice,
   deleteDevice,
-  listDeviceAssignmentHistory
+  listDeviceAssignmentHistory,
+  getDevicesBySpecification
 } from './sitewhere-devices-api.js'
 
 // Assignments.
@@ -164,7 +165,8 @@ export function createBaseUrl (store) {
 export function createAxiosFromStore (store) {
   var baseUrl = createBaseUrl(store)
   var authToken = store.getters.authToken
-  var tenantToken = (store.getters.selectedTenant) ? store.getters.selectedTenant.authenticationToken : ''
+  // var tenantToken = (store.getters.selectedTenant) ? store.getters.selectedTenant.authenticationToken : ''
+  var tenantToken = 'sitewhere1234567890';
   return createAxiosAuthorized(baseUrl, authToken, tenantToken)
 }
 
@@ -834,6 +836,21 @@ export function _listDeviceAssignmentHistory (store, hardwareId, includeAsset,
     includeDevice, includeSite, paging)
   return loaderWrapper(store, api)
 }
+
+/**
+ * 
+ * Get devices by specification token 
+ * 
+ * @param {*} store 
+ * @param {*} token 
+ * @param {*} paging 
+ */
+export function _getDevicesBySpecification(store, token, paging) {
+  let axios = createAxiosFromStore(store)
+  let api = getDevicesBySpecification(axios, token, paging)
+  return loaderWrapper(store, api);
+}
+
 
 /**
  * Get a device by hardware id.

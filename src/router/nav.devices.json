@@ -1,0 +1,21 @@
+{
+  "navData": {
+    "id": "devices",
+    "name": "设备",
+    "children": [{
+      "id": "packing",
+      "name": "车位检测",
+      "iconCls": "fa fa-car",
+      "groups": [{
+        "path": "/devices/parking",
+        "component": "parking",
+        "name": "最新数据"
+      },
+        {
+          "path": "/devices/parking/status",
+          "component": "status",
+          "name": "设备状态"
+        }]
+    }]
+  }
+}
