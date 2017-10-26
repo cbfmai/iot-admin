@@ -1,31 +1,74 @@
 <template>
-  <div id="map-container" class="map"></div>
-
+  <div class="map_wrapper">
+    <div id="map-container" class="map"></div>
+    <div class="promptBox">
+    </div>
+  </div>
 </template>
 
 <script>
-  import ol from 'ol';
-  import 'ol/ol.css';
-  import Map from 'ol/map';
-  import View from 'ol/view';
-  import TileLayer from 'ol/layer/tile';
-  import OSM from 'ol/source/osm';
+  import XBaseMap from '../assets/xmap/xBaseMap'
+  import XBaseLayer from '../assets/xmap/layer/baseLayer'
+  import 'openlayers/css/ol.css'
 
   export default {
     mounted() {
-      new Map({
+      let map = new XBaseMap({
         target: 'map-container',
-        layers: [
-          new TileLayer({
-            source: new OSM()
-          })
-        ],
-        view: new View({
-          center: [0, 0],
-          zoom: 2
-        })
+        center: [112.57, 26.91],
+        code: 'EPSG:4326',
+        zoom: 13
       });
+      let dataLayer = new XBaseLayer({
+        baseMap: map,
+      });
+      dataLayer.showData({
+        type: 'base',
+        data: [{
+          id: 1,
+          longitude: 112.599,
+          latitude: 26.91,
+          name: '车位检测器1'
+        }, {
+          id: 2,
+          longitude: 112.543,
+          latitude: 26.938,
+          name: '烟杆1'
+        }, {
+          id: 3,
+          longitude: 112.558,
+          latitude: 26.904,
+          name: '井盖1'
+        }, {
+          id: 4,
+          longitude: 112.568,
+          latitude: 26.886,
+          name: '路灯控制器1'
+        }],
+        styleFunc: function (itemData, zoom, resolution, point) {
+          return {
+            styleType: 'Icon',
+            src: '../static/images/map/mnholeCover.png'
+          }
+        }
+      })
     }
-
   }
 </script>
+
+<style>
+  .map_wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  #map-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .ol-mouse-position {
+    top: inherit;
+    bottom: 17px;
+  }
+</style>

@@ -17,7 +17,6 @@
 </template>
 
 <script>
-
   import header from './components/header/header.vue';
   import aside from './components/aside/aside.vue';
   import login from './views/login.vue'
@@ -38,10 +37,12 @@
     },
 
     mounted() {
-      let token = window.sessionStorage.getItem("token");
-      if (token) {
-        this.token = JSON.parse(token)
-      } else {
+
+      let token = this.$store.getters.authToken;
+      //console.log(authToken)
+
+      //let token = window.sessionStorage.getItem("token");
+      if (!token) {
         this.$router.push("/login")
       }
     },
@@ -54,8 +55,8 @@
 
     methods :{
       loginSuccess(data) {
-        window.sessionStorage.setItem("user", JSON.stringify(data))
-        this.token = data;
+        //window.sessionStorage.setItem("user", JSON.stringify(data))
+        //this.token = data;
         this.$router.push("/map")
       },
     }
@@ -73,6 +74,13 @@
 
 
 <style>
+  body{
+    background-color:#3d3d3d;
+    font-family:Microsoft YaHei, Tahoma, sans-serif;
+    font-size:12px;
+    color:#333;
+    overflow:hidden;
+  }
   #app {
     /*font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -81,18 +89,24 @@
     color: #2c3e50;*/
 
     /*background-color:#3d3d3d;*/
-    font-family: Microsoft YaHei, Tahoma, sans-serif;
-    font-size: 12px;
-    color: #333;
-    overflow: hidden;
+    /*font-family: Microsoft YaHei, Tahoma, sans-serif;*/
+    /*font-size: 12px;*/
+    /*color: #333;*/
+    /*overflow: hidden;*/
   }
 
   /*右侧主内容*/
   .mainContent {
-    /*border-right: 1px solid #fefefe;*/
     margin: 0 0 10px 70px;
     background-color: #fafafa;
     border-radius: 0 0 0 3px;
+    padding:1px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 50px;
+    overflow: hidden;
   }
 
   .mainContent .mapWrap {
@@ -108,20 +122,5 @@
     margin-bottom: 15px;
   }
 
-  .mainContent .leftPanel::before {
-    bottom: 15px;
-    content: "";
-    display: block;
-    position: fixed;
-    top: 50px;
-    width: 400px;
-    z-index: 0;
-    /*box-shadow:1px 0 2px rgba(0, 0, 0, 0.1);*/
-    border-right: 1px solid #d4d4d4;
-  }
 
-  .mainContent .leftPanel {
-    float: left;
-    width: 400px;
-  }
 </style>

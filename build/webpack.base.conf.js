@@ -26,6 +26,7 @@ module.exports = {
     }
   },
   module: {
+    noParse: ['/node_modules/prebuiltlib/dist/build.js'],
     rules: [
       {
         test: /\.(js|vue)$/,
@@ -44,7 +45,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test')],
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

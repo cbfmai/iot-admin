@@ -165,8 +165,9 @@ export function createBaseUrl (store) {
 export function createAxiosFromStore (store) {
   var baseUrl = createBaseUrl(store)
   var authToken = store.getters.authToken
-  // var tenantToken = (store.getters.selectedTenant) ? store.getters.selectedTenant.authenticationToken : ''
-  var tenantToken = 'sitewhere1234567890';
+  //var tenantToken = (store.getters.selectedTenant) ? store.getters.selectedTenant.authenticationToken : ''
+  var tenantToken = store.getters.authTenants
+  //var tenantToken = 'sitewhere1234567890';
   return createAxiosAuthorized(baseUrl, authToken, tenantToken)
 }
 

@@ -1,26 +1,89 @@
 <template>
-  <section class="chart-container">
-    <el-row>
-      <el-col :span="12">
-        <div id="chartColumn" style="width:100%; height:400px;"></div>
-      </el-col>
-      <el-col :span="12">
-        <div id="chartBar" style="width:100%; height:400px;"></div>
-      </el-col>
-      <el-col :span="12">
-        <div id="chartLine" style="width:100%; height:400px;"></div>
-      </el-col>
-      <el-col :span="12">
-        <div id="chartPie" style="width:100%; height:400px;"></div>
-      </el-col>
-      <el-col :span="24">
-        <a href="http://echarts.baidu.com/examples.html" target="_blank" style="float: right;">more>></a>
-      </el-col>
-    </el-row>
-  </section>
+  <div class="subMainContent">
+    <div class="dataListBox">
+      <div class="dataList">
+        <div class="subNav cf">
+          <h5><em class="fa fa-area-chart"></em>概况</h5>
+        </div>
+        <div class="suveryBox">
+          <div class="totalBox">
+            <el-row :gutter="20">
+              <el-col :span="6">
+                <div class="totalItem bg-blue">
+                  <div class="visual">
+                    <i class="fa fa-list-alt"></i>
+                  </div>
+                  <div class="details">
+                    <div class="number">25,976</div>
+                    <div class="desc">设备总数</div>
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="totalItem bg-green">
+                  <div class="visual">
+                    <i class="fa fa-bar-chart"></i>
+                  </div>
+                  <div class="details">
+                    <div class="number">1,022</div>
+                    <div class="desc">当日事件总数</div>
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="totalItem bg-violet">
+                  <div class="visual">
+                    <i class="fa fa-bell-o"></i>
+                  </div>
+                  <div class="details">
+                    <div class="number">3,099</div>
+                    <div class="desc">当日告警</div>
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="totalItem bg-yellow">
+                  <div class="visual">
+                    <i class="fa fa-question-circle"></i>
+                  </div>
+                  <div class="details">
+                    <div class="number">2,103</div>
+                    <div class="desc">故障设备总数</div>
+                  </div>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+        </div>
+
+        <!--图表-->
+        <div class="chartBox">
+          <el-row gutter="20">
+            <el-col :span="12">
+              <div class="itemChart">
+                <h2>最近一月设备事件数量</h2>
+                <div class="chart">
+                  chart 01
+                </div>
+              </div>
+            </el-col>
+            <el-col :span="12">
+              <div class="itemChart">
+                <h2>最近一月设备故障率</h2>
+                <div class="chart">
+                  chart 02
+                </div>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+  import '../assets/styles/layout.css';
   import echarts from 'echarts'
 
   export default {
@@ -209,8 +272,66 @@
       height: 400px;
       float: left;
   }*/
-
   .el-col {
-    padding: 30px 20px;
+    padding: 10px 20px;
+  }
+  .totalBox {
+    height: 150px;
+    margin:20px 10px 10px;
+  }
+  .totalBox .totalItem {
+    height: 100px;
+    padding: 15px 20px;
+    color: #fff;
+    border-radius: 3px;
+    /*margin:0 10px;*/
+  }
+  .totalItem .details {
+    float: right;
+    padding-right: 10px;
+  }
+  .totalItem .details .number {
+    padding-top: 16px;
+    text-align: right;
+    font-size: 40px;
+    letter-spacing: 1px;
+    font-weight: 300;
+    color: #fff;
+    margin-bottom: 10px;
+    font-family: Impact, "Times New Roman", Times, serif;
+  }
+  .totalItem .details .desc {
+    text-align: right;
+    font-size: 16px;
+    letter-spacing: 0px;
+    font-weight: 300;
+    color: #fff;
+  }
+  .chartBox {
+    margin:0 10px;
+  }
+  .chartBox .itemChart {
+    border: 1px solid #efefef;
+    min-height: 380px;
+    /*margin:0 10px;*/
+    padding: 20px;
+  }
+  .chartBox .itemChart h2 {
+    margin-bottom: 30px;
+    font-size: 18px;
+  }
+  .visual {
+    width: 80px;
+    height: 80px;
+    display: block;
+    float: left;
+    padding-top: 10px;
+    padding-left: 5px;
+    text-align: center;
+  }
+  .visual i {
+    color: #fff;
+    font-size: 55px;
+    margin-top: 12px;
   }
 </style>
